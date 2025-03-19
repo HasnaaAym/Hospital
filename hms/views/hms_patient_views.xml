@@ -1,0 +1,90 @@
+<odoo>
+    <data>
+
+        <record id="patient_view_view" model="ir.ui.view">
+            <field name="name">patient Tree view</field>
+            <field name="model">hms.patient</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="email"/>
+                    <field name="birth_day"/>
+                    <field name="age"/>
+                    <field name="address"/>
+                    <field name="history"/>
+                    <field name="cr_ratio"/>
+                    <field name="blood_type"/>
+                    <field name="pcr"/>
+                    <field name="image"/>
+                    <field name="department_id"/>
+                    <field name="department_capacity"/>
+                </tree>
+            </field>
+
+        </record>
+        <record id="patient_form_view" model="ir.ui.view">
+            <field name="name">patient form view</field>
+            <field name="model">hms.patient</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Undetermined" type="object" name="set_state_undetermined"/>
+                        <button string="Good" type="object" name="set_state_good"/>
+                        <button string="Fair" type="object" name="set_state_fair"/>
+                        <button string="Serious" type="object" name="set_state_serious"/>
+                        <field name="state" widget="statusbar" statusbar_visible="U,G,F,S"/>
+                    </header>
+                    <sheet>
+                     <group>
+                     <group>
+                    <field name="first_name" required="True"/>
+                    <field name="last_name" required="True"/>
+                    <field name="birth_day"/>
+                     <field name="email"/>
+                    <field name="age"/>
+                    <field name="cr_ratio"  attrs="{'required': [('pcr', '=', True)]}"/>
+                    <field name="blood_type"/>
+<!--                     <field name="state"/>-->
+                     <field name="pcr"/>
+                      <field name="image" widget="image"/>
+                     </group>
+                         <group>
+                    <field name="department_id" domain="[('is_opened','=','True')]" context="{'default_is_opened':True}"/>
+                    <field name="department_capacity"/>
+                     <field name="doctors_id" widget="many2many_tags" attrs="{
+                              'readonly':[('department_id','=',False)]}"
+                      groups="hms.hms_manager_group"/>
+                     </group>
+                     </group>
+                    <notebook>
+                     <page string="log history">
+                      <field name="patientloghistory_id">
+                          <tree>
+                              <field name="patient_id" />
+                              <field name="created_by"/>
+                              <field name="date"/>
+                              <field name="description"/>
+                          </tree>
+                         </field>
+                     </page>
+                     <page string="History">
+                    <field name="history" attrs="{'invisible':[('age','&lt;',30)]}"/>
+                     </page>
+                      <page string="Address">
+                    <field name="address"/>
+                      </page>
+                    </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="patient_action" model="ir.actions.act_window">
+            <field name="name">Patient</field>
+            <field name="res_model">hms.patient</field>
+        </record>
+        <menuitem id="hms_menu" name="Hms"/>
+        <menuitem id="hms_patient_menu" name="Patient" parent="hms_menu" action="patient_action"/>
+    </data>
+</odoo>

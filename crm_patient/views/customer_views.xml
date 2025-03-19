@@ -1,0 +1,39 @@
+<odoo>
+    <data>
+        <record id="crm_form_inherit" model="ir.ui.view">
+           <field name="name">c</field>
+           <field name="model">res.partner</field>
+           <field name="inherit_id" ref="base.view_partner_form"/>
+           <field name="arch" type="xml">
+               <xpath expr="//field[@name='email']" position="after">
+                    <field name="email"/>
+                </xpath>
+
+                <xpath expr="//field[@name='email']" position="after">
+                    <field name="tax_id"/>
+                </xpath>
+
+                <xpath expr="//field[@name='tax_id']" position="after">
+                    <field name="website"/>
+                </xpath>
+            <xpath expr="//page[2]" position="inside">
+                <group string="related_patient_id">
+                    <field name="related_patient_id"/>
+                </group>
+            </xpath>
+           </field>
+       </record>
+
+<!--        <record name="crm_tree_inherit" model="ir.ui.view">-->
+<!--            <field name="name">crm_form_inherit</field>-->
+<!--            <field name="model">res.partner</field>-->
+<!--            <field name="inherit_id">base.view_partner_tree</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--              <xpath expr="//field[@name='email']" position="after">-->
+<!--                  <field name="related_patient_id"/>-->
+<!--              </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+    </data>
+</odoo>
