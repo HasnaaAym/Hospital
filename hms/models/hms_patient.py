@@ -37,8 +37,8 @@ class HmsPatient(models.Model):
     age = fields.Integer(compute="calc_age", store=True)
     department_id = fields.Many2one("hms.department")
     department_capacity = fields.Integer(related="department_id.capacity")
-    doctors_id = fields.Many2many("hms.doctor")
-    patientloghistory_id = fields.One2many("patient.log.history", "patient_id")
+    doctor_ids = fields.Many2many("hms.doctor")
+    patient_log_history_ids = fields.One2many("patient.log.history", "patient_id")
 
     def change_state(self, new_state):
         self.state = new_state
