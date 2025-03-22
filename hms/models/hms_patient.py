@@ -1,7 +1,5 @@
 import re
-from email.policy import default
 
-from Tools.scripts.objgraph import store
 
 from odoo import models, fields, api
 from odoo.api import constrains
@@ -26,19 +24,19 @@ class HmsPatient(models.Model):
          ('AB', 'AB'),
          ('O', 'O'), ])
     state = fields.Selection(
-        [("U", "Undetermined"),
-         ("G", "Good"),
-         ("F", "Fair"),
-         ("S", "Serious")]
-    ,default='G')
+        [("Undetermined", "Undetermined"),
+         ("Good", "Good"),
+         ("Fair", "Fair"),
+         ("Serious", "Serious")]
+    ,default='Good')
     pcr = fields.Boolean()
     image = fields.Binary()
     address = fields.Text()
     age = fields.Integer(compute="calc_age", store=True)
     department_id = fields.Many2one("hms.department")
     department_capacity = fields.Integer(related="department_id.capacity")
-    doctors_id = fields.Many2many("hms.doctor")
-    patientloghistory_id = fields.One2many("patient.log.history", "patient_id")
+    doctor_ids = fields.Many2many("hms.doctor")
+    patient_log_history_ids = fields.One2many("patient.log.history", "patient_id")
 
     def change_state(self, new_state):
         self.state = new_state
@@ -51,7 +49,7 @@ class HmsPatient(models.Model):
         })
 
     def set_state_undetermined(self):
-        self.change_state("U")
+        self.change_state("Undetermined")
 
     def set_state_good(self):
         self.change_state("G")

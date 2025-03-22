@@ -33,7 +33,7 @@
                         <button string="Good" type="object" name="set_state_good"/>
                         <button string="Fair" type="object" name="set_state_fair"/>
                         <button string="Serious" type="object" name="set_state_serious"/>
-                        <field name="state" widget="statusbar" statusbar_visible="U,G,F,S"/>
+                        <field name="state" widget="statusbar" statusbar_visible="Undetermined,Good,Fair,Serious"/>
                     </header>
                     <sheet>
                      <group>
@@ -52,14 +52,14 @@
                          <group>
                     <field name="department_id" domain="[('is_opened','=','True')]" context="{'default_is_opened':True}"/>
                     <field name="department_capacity"/>
-                     <field name="doctors_id" widget="many2many_tags" attrs="{
+                     <field name="doctor_ids" widget="many2many_tags" attrs="{
                               'readonly':[('department_id','=',False)]}"
                       groups="hms.hms_manager_group"/>
                      </group>
                      </group>
                     <notebook>
                      <page string="log history">
-                      <field name="patientloghistory_id">
+                      <field name="patient_log_history_ids">
                           <tree>
                               <field name="patient_id" />
                               <field name="created_by"/>

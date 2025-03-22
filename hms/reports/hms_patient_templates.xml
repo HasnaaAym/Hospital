@@ -23,7 +23,7 @@
                             </p>
                             <p>
                                 <strong style="color: #000000; font-weight: bold; font-size: 30px;">Doctors:</strong>
-                                <span t-field="o.doctors_id.name" style="font-size: 20px;"/>
+                                <span t-field="o.doctor_ids.name" style="font-size: 20px;"/>
                             </p>
                         </div>
                         <div class="col-6">
@@ -58,7 +58,7 @@
                                     <th>Date</th>
                                     <th>info</th>
                                 </tr>
-                                  <t t-foreach="o.patientloghistory_id" t-as="log">
+                                  <t t-foreach="o.patient_log_history_ids" t-as="log">
                                       <tr style="text-align: center ;border: 3px solid white; color: white; background-color:#7FAEEC ; font-weight: bold font-size: 20px">
                                          <td><span t-field="log.created_by.name"/> </td>
                                           <td><span t-field="log.date"/></td>
