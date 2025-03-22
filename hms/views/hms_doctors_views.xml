@@ -5,8 +5,8 @@
             <field name="model">hms.doctor</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="FirstName"/>
-                    <field name="LastName"/>
+                    <field name="first_name"/>
+                    <field name="last_name"/>
                     <field name="image" widget="image"/>
                 </tree>
             </field>
@@ -19,8 +19,8 @@
                     <sheet>
                     <group>
                      <group string="Basic info">
-                    <field name="FirstName" requried="True"/>
-                    <field name="LastName" requried="True"/>
+                    <field name="first_name" requried="True"/>
+                    <field name="last_name" requried="True"/>
                      </group>
                     <group string="Image">
                     <field name="image" widget="image"/>

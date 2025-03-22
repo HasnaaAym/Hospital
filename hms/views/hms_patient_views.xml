@@ -33,7 +33,7 @@
                         <button string="Good" type="object" name="set_state_good"/>
                         <button string="Fair" type="object" name="set_state_fair"/>
                         <button string="Serious" type="object" name="set_state_serious"/>
-                        <field name="state" widget="statusbar" statusbar_visible="U,G,F,S"/>
+                        <field name="state" widget="statusbar" statusbar_visible="Undetermined,Good,Fair,Serious"/>
                     </header>
                     <sheet>
                      <group>
